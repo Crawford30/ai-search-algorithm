@@ -3,7 +3,6 @@
 #c. UCS
 
 import heapq
-
 class Graph:
     def __init__(self):
         self.graph = {}
@@ -17,10 +16,15 @@ class Graph:
 def uniform_cost_search(graph, start, goal):
     visited = set()
     priority_queue = [(0, start)]
+    
     path = {}
+    
+    # Keep track of expanded states
+    expanded_states = []  
 
     while priority_queue:
         cost, node = heapq.heappop(priority_queue)
+        expanded_states.append(node)
         if node in visited:
             continue
 
@@ -33,14 +37,18 @@ def uniform_cost_search(graph, start, goal):
                 node = path[node]
             final_path.append(start)
             final_path.reverse()
-            return final_path
+            return final_path, expanded_states
 
-        for neighbor, neighbor_cost in graph.get(node, []):
+        neighbors = graph.get(node, [])
+        
+        # Sort neighbors by cost and node name
+        neighbors.sort(key=lambda x: (x[1], x[0]))  
+        for neighbor, neighbor_cost in neighbors:
             if neighbor not in visited:
                 heapq.heappush(priority_queue, (cost + neighbor_cost, neighbor))
                 path[neighbor] = node
 
-    return None
+    return None, expanded_states
 
 if __name__ == "__main__":
     g = Graph()
@@ -58,9 +66,10 @@ if __name__ == "__main__":
     start_node = "S"
     goal_node = "G"
     
-    ucs_path = uniform_cost_search(g.graph, start_node, goal_node)
+    ucs_path, expanded_states = uniform_cost_search(g.graph, start_node, goal_node)
 
     if ucs_path:
+        print("Expanded states:", " -> ".join(expanded_states))
         print("UCS GRAPH SEARCH path from", start_node, "to", goal_node, ":", " -> ".join(ucs_path))
     else:
         print("No path found from", start_node, "to", goal_node)
