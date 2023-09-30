@@ -54,7 +54,7 @@ if __name__ == "__main__":
 
     greedy_path = greedy_search(g.graph, start_node, goal_node, node_heuristics)
 
-    # Convert the tuples to strings for printing
+    # Convert the tuples to strings
     path_str = " -> ".join([node[0] for node in greedy_path])
 
     print("Greedy Search GRAPH path from", start_node, "to", goal_node, ":", path_str)
