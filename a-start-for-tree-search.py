@@ -52,7 +52,7 @@ def heuristic(node, goal):
     # This can be based on distance, straight-line distance, etc.
     # For demonstration purposes, we'll use a simple heuristic (return 0)
     return 0
-
+#("S", "A"), ("S", "B"), ("A", "B"), ("A", "C"), ("B", "C"), ("C", "D"), ("C", "G"), ("D", "G")
 # Usage
 if __name__ == "__main__":
     g = Graph()

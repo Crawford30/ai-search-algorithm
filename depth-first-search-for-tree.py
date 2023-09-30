@@ -8,6 +8,7 @@ class Graph:
         else:
             self.graph[node] = [neighbor]
 
+
 def dfs(graph, node, visited, path):
     visited.add(node)
     path.append(node)
@@ -17,20 +18,32 @@ def dfs(graph, node, visited, path):
         if neighbor not in visited:
             dfs(graph, neighbor, visited, path)
 
+
 # Usage
 if __name__ == "__main__":
     g = Graph()
-   
+
     g.add_edge("S", "A")
     g.add_edge("S", "B")
     g.add_edge("A", "B")
-    g.add_edge("A", "G")
-    g.add_edge("B", "A")
-    g.add_edge("B", "G")
-    g.add_edge("B", "A")
-    g.add_edge("B", "G")
-    g.add_edge("A", "B")
-    g.add_edge("A", "G")
+    g.add_edge("A", "C")
+    g.add_edge("B", "C")
+    g.add_edge("C", "D")
+    g.add_edge("C", "G")
+    g.add_edge("D", "G")
+   
+    # g.add_edge("S", "A")
+    # g.add_edge("S", "B")
+    # g.add_edge("A", "B")
+    # g.add_edge("A", "G")
+    # g.add_edge("B", "A")
+    # g.add_edge("B", "G")
+    # g.add_edge("B", "A")
+    # g.add_edge("B", "G")
+    # g.add_edge("A", "B")
+    # g.add_edge("A", "G")
+    
+    
     # g.add_edge("S", "A")
     # g.add_edge("S", "B")
     # g.add_edge("A", "B")
