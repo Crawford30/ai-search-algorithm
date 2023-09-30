@@ -30,8 +30,9 @@ def greedy_search(graph, start, goal, node_heuristics):
         if not unvisited_neighbors:
             break
 
-        # Choose the neighbor with the lowest heuristic value
-        current_node = min(unvisited_neighbors, key=lambda x: node_heuristics[x[0]])
+        # Choose the neighbor with the lowest heuristic value,
+        # and in case of ties, select the one with the smallest name (alphabetically)
+        current_node = min(unvisited_neighbors, key=lambda x: (node_heuristics[x[0]], x[0]))
 
     return path
 
