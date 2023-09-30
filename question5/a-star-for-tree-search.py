@@ -31,6 +31,7 @@ def astar_search(graph, start, goal, node_heuristics):
         if current_node in visited:
             continue
 
+        #Check if current node is the goal
         if current_node == goal:
             final_path = []
             while current_node:
