@@ -1,17 +1,16 @@
 #QUESTION 3. Using python implement the following search strategies using for graph search
 #d. Greedy Search
-
 class Graph:
     def __init__(self):
         self.graph = {}
 
-    def add_edge(self, node, neighbor):
+    def add_edge(self, node, neighbor, cost):
         if node in self.graph:
-            self.graph[node].append(neighbor)
+            self.graph[node].append((neighbor, cost))
         else:
-            self.graph[node] = [neighbor]
+            self.graph[node] = [(neighbor, cost)]
 
-def greedy_search(graph, start):
+def greedy_search(graph, start, goal, node_heuristics):
     visited = set()
     path = []
 
@@ -21,33 +20,41 @@ def greedy_search(graph, start):
         path.append(current_node)
         visited.add(current_node)
 
+        if current_node == goal:
+            break
+
         neighbors = graph.get(current_node, [])
-        unvisited_neighbors = [n for n in neighbors if n not in visited]
+        unvisited_neighbors = [(n, cost) for n, cost in neighbors if n not in visited]
 
         if not unvisited_neighbors:
             break
 
-        # In a Greedy Search, 
-        # choose the neighbor that appears first in the list
-        current_node = unvisited_neighbors[0]
+        # Choose the neighbor with the lowest heuristic value
+        current_node = min(unvisited_neighbors, key=lambda x: node_heuristics[x[0]])
 
     return path
 
-# Usage
 if __name__ == "__main__":
     g = Graph()
 
-    g.add_edge("S", "A")
-    g.add_edge("S", "B")
-    g.add_edge("A", "B")
-    g.add_edge("A", "C")
-    g.add_edge("B", "C")
-    g.add_edge("C", "D")
-    g.add_edge("C", "G")
-    g.add_edge("D", "G")
+    g.add_edge("S", "A", 3)
+    g.add_edge("S", "B", 1)
+    g.add_edge("A", "B", 2)
+    g.add_edge("A", "C", 2)
+    g.add_edge("B", "C", 3)
+    g.add_edge("C", "D", 4)
+    g.add_edge("C", "G", 4)
+    g.add_edge("D", "G", 1)
+    g.add_edge("G", "G", 0)
 
     start_node = "S"
+    goal_node = "G"
 
-    greedy_path = greedy_search(g.graph, start_node)
+    node_heuristics = {"S": 7, "A": 5, "B": 7, "C": 3, "D": 1, "G": 0}
 
-    print("Greedy Search path starting from", start_node, ":", " -> ".join(greedy_path))
+    greedy_path = greedy_search(g.graph, start_node, goal_node, node_heuristics)
+
+    # Convert the tuples to strings for printing
+    path_str = " -> ".join([node[0] for node in greedy_path])
+
+    print("Greedy Search GRAPH path from", start_node, "to", goal_node, ":", path_str)
