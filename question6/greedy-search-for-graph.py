@@ -14,6 +14,7 @@ class Graph:
 def greedy_search(graph, start, goal, node_heuristics):
     visited = set()
     path = []
+    expanded_states = []  # Keep track of expanded states
 
     current_node = start
 
@@ -34,7 +35,10 @@ def greedy_search(graph, start, goal, node_heuristics):
         # and in case of ties, select the one with the smallest name (alphabetically)
         current_node = min(unvisited_neighbors, key=lambda x: (node_heuristics[x[0]], x[0]))
 
-    return path
+        # Keep track of expanded states
+        expanded_states.append(current_node[0])
+
+    return path, expanded_states
 
 if __name__ == "__main__":
     g = Graph()
@@ -54,9 +58,10 @@ if __name__ == "__main__":
 
     node_heuristics = {"S": 7, "A": 5, "B": 7, "C": 3, "D": 1, "G": 0}
 
-    greedy_path = greedy_search(g.graph, start_node, goal_node, node_heuristics)
+    greedy_path, expanded_states = greedy_search(g.graph, start_node, goal_node, node_heuristics)
 
-    # Convert the tuples to strings for printing
-    path_str = " -> ".join([node[0] for node in greedy_path])
+    # Extract node names from tuples and convert them to strings
+    path_str = " -> ".join(node[0] for node in greedy_path)
 
+    print("Expanded states:", " -> ".join(expanded_states))
     print("Greedy Search GRAPH path from", start_node, "to", goal_node, ":", path_str)
