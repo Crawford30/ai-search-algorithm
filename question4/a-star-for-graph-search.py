@@ -68,7 +68,7 @@ if __name__ == "__main__":
     # Node Heuristic 
     node_heuristics = {"S": 7, "A": 5, "B": 7, "C": 3, "D": 1, "G": 0}
      
-    # A Star Path
+    # A-star Path
     astar_path = astar_search(g.graph, start_node, goal_node, node_heuristics)
 
     if astar_path:
