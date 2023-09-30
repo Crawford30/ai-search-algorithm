@@ -17,19 +17,21 @@ def bfs(graph, start):
     visited = set()
     queue = deque([start])
     path = []
+    expanded_states = []
 
     while queue:
         node = queue.popleft()
+        expanded_states.append(node)
         if node not in visited:
             visited.add(node)
             path.append(node)
             neighbors = graph.get(node, [])
+            neighbors.sort()  # Sort the neighbors alphabetically
             for neighbor in neighbors:
                 if neighbor not in visited:
                     queue.append(neighbor)
 
-    return path
-
+    return path, expanded_states
 
 if __name__ == "__main__":
     g = Graph()
@@ -45,5 +47,9 @@ if __name__ == "__main__":
     
    
     print("BFS traversal starting from S:")
-    bfs_path = bfs(g.graph, "S")
-    print(" -> ".join(bfs_path))
+    bfs_path, expanded_states = bfs(g.graph, "S")
+    print("Expanded states:", " -> ".join(expanded_states))
+    print("Path Returned:", " -> ".join(bfs_path))
+    unexpanded_states = set(g.graph.keys()) - set(expanded_states)
+    unexpanded_states = sorted(unexpanded_states) #Sort the unexpanded states alphabetically
+    print("Unexpanded states:", " -> ".join(unexpanded_states))

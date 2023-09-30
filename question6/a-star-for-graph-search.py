@@ -14,7 +14,7 @@ class Graph:
             self.graph[node] = [(neighbor, cost)]
 
 def astar_search(graph, start, goal, node_heuristics):
-    visited = set() #Keep track of visited states
+    visited = set()
     priority_queue = [(0, start)]
     path = {}
     g_scores = {node: float('inf') for node in graph}
@@ -37,7 +37,9 @@ def astar_search(graph, start, goal, node_heuristics):
 
         visited.add(current_node)
 
-        for neighbor, neighbor_cost in graph.get(current_node, []):
+        neighbors = graph.get(current_node, [])
+        neighbors.sort()  # Sort neighbors alphabetically
+        for neighbor, neighbor_cost in neighbors:
             if neighbor in visited:
                 continue
 
@@ -46,10 +48,10 @@ def astar_search(graph, start, goal, node_heuristics):
             if tentative_g_score < g_scores[neighbor]:
                 path[neighbor] = current_node
                 g_scores[neighbor] = tentative_g_score
-                f_score = tentative_g_score + node_heuristics.get(neighbor, 0) #Use node-specific heuristic
+                f_score = tentative_g_score + node_heuristics.get(neighbor, 0)  # Use node-specific heuristic
                 heapq.heappush(priority_queue, (f_score, neighbor))
 
-    return None, expanded_states
+    return None
 
 if __name__ == "__main__":
     g = Graph()
@@ -74,10 +76,7 @@ if __name__ == "__main__":
     astar_path, expanded_states = astar_search(g.graph, start_node, goal_node, node_heuristics)
 
     if astar_path:
-        print("A* GRAPH SEARCH path from", start_node, "to", goal_node, ":", " -> ".join(astar_path))
         print("Expanded states:", " -> ".join(expanded_states))
-        unexpanded_states = set(g.graph.keys()) - set(expanded_states)
-        print("Unexpanded states:", " -> ".join(sorted(unexpanded_states)))
+        print("A* GRAPH SEARCH path from", start_node, "to", goal_node, ":", " -> ".join(astar_path))
     else:
         print("No path found from", start_node, "to", goal_node)
-
