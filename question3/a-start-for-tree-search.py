@@ -1,3 +1,6 @@
+#QUESTION 3. Using python implement the following search strategies using for tree search
+#e. A*
+
 import heapq
 
 class Graph:

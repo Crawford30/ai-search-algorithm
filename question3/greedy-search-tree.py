@@ -1,3 +1,6 @@
+#QUESTION 3. Using python implement the following search strategies using for tree search
+#d. Greedy Search
+
 class Graph:
     def __init__(self):
         self.graph = {}
