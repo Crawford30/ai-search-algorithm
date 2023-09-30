@@ -34,7 +34,6 @@ def greedy_search(graph, start, heuristic):
 
     return path
 
-
 if __name__ == "__main__":
     g = Graph()
 
@@ -51,6 +50,12 @@ if __name__ == "__main__":
 
     heuristic_values = {"S": 7, "A": 5, "B": 7, "C": 3, "D": 1, "G": 0}
 
+    visited_nodes = set()
+    path = []
     greedy_path = greedy_search(g.graph, start_node, heuristic_values)
+    expanded_states = visited_nodes
+    unexpanded_states = set(g.graph.keys()) - expanded_states
 
     print("Greedy Search path starting from", start_node, ":", " -> ".join(greedy_path))
+    print("Expanded states:", " -> ".join(expanded_states))
+    print("Unexpanded states:", " -> ".join(sorted(unexpanded_states)))
