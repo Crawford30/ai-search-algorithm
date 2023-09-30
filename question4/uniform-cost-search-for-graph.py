@@ -1,4 +1,4 @@
-#QUESTION 3. Using python implement the following search strategies using for tree search
+#QUESTION 3. Using python implement the following search strategies using for graph search
 #c. UCS
 
 import heapq
