@@ -1,6 +1,9 @@
 #QUESTION 3. Using python implement the following search strategies using for graph search
 #a. Depth first search
 
+#Note:: 1. DFS for Graph can contain cycles
+#Note:: 2. It's possible to revisit nodes in the graph if the traversal encounters cycles
+
 
 class Graph:
     def __init__(self):
@@ -12,17 +15,15 @@ class Graph:
         else:
             self.graph[node] = [neighbor]
 
-
-def dfs(graph, node, visited, path):
-    visited.add(node)
-    path.append(node)
-    if node == "G":  # Stop the traversal when you reach  "G", goal Node
-        return
-    for neighbor in graph.get(node, []):
-        if neighbor not in visited:
-            dfs(graph, neighbor, visited, path)
-
-
+def dfs_graph(graph, start):
+    visited = set()
+    stack = [start]
+    while stack:
+        node = stack.pop()
+        if node not in visited:
+            print(node, end=" -> ")
+            visited.add(node)
+            stack.extend(neighbor for neighbor in graph.get(node, []) if neighbor not in visited)
 
 if __name__ == "__main__":
     g = Graph()
@@ -35,33 +36,6 @@ if __name__ == "__main__":
     g.add_edge("C", "D")
     g.add_edge("C", "G")
     g.add_edge("D", "G")
-   
-    # g.add_edge("S", "A")
-    # g.add_edge("S", "B")
-    # g.add_edge("A", "B")
-    # g.add_edge("A", "G")
-    # g.add_edge("B", "A")
-    # g.add_edge("B", "G")
-    # g.add_edge("B", "A")
-    # g.add_edge("B", "G")
-    # g.add_edge("A", "B")
-    # g.add_edge("A", "G")
-    
-    
-    # g.add_edge("S", "A")
-    # g.add_edge("S", "B")
-    # g.add_edge("A", "B")
-    # g.add_edge("A", "C")
-    # g.add_edge("B", "C")
-    # g.add_edge("C", "D")
-    # g.add_edge("C", "G")
-    # g.add_edge("D", "G")
 
-    print("DFS traversal starting from S:")
-    visited_nodes = set()
-    path = []
-    dfs(g.graph, "S", visited_nodes, path)
-    print(" -> ".join(path))
-
-
-
+    print("DFS Graph traversal starting from S:")
+    dfs_graph(g.graph, "S")
