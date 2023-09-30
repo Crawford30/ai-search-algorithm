@@ -14,7 +14,9 @@ class Graph:
 def greedy_search(graph, start, goal, node_heuristics):
     visited = set()
     path = []
-    expanded_states = []  # Keep track of expanded states
+    
+    # To keep track of expanded states
+    expanded_states = []  
 
     current_node = start
 

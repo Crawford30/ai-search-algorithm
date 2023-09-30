@@ -19,7 +19,7 @@ def uniform_cost_search(graph, start, goal):
     
     path = {}
     
-    # Keep track of expanded states
+    #To keep track of expanded states
     expanded_states = []  
 
     while priority_queue:

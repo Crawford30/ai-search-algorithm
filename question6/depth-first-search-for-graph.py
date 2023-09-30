@@ -20,6 +20,7 @@ def dfs(graph, start):
     while stack:
         node = stack.pop()
         if node not in visited:
+            
             # Keep track of expanded states
             expanded_states.append(node)
 

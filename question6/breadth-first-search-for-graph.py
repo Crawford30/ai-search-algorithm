@@ -26,6 +26,7 @@ def bfs(graph, start):
             visited.add(node)
             path.append(node)
             neighbors = graph.get(node, [])
+            
             #Sort the neighbors alphabetically
             neighbors.sort()  
             for neighbor in neighbors:
