@@ -11,7 +11,7 @@ class Graph:
         else:
             self.graph[node] = [neighbor]
 
-def greedy_search(graph, start):
+def greedy_search(graph, start, heuristic):
     visited = set()
     path = []
 
@@ -27,13 +27,14 @@ def greedy_search(graph, start):
         if not unvisited_neighbors:
             break
 
-        # In a Greedy Search, 
-        # choose the neighbor that appears first in the list
-        current_node = unvisited_neighbors[0]
+        # Choose the neighbor with the lowest heuristic value
+        best_neighbor = min(unvisited_neighbors, key=lambda neighbor: heuristic[neighbor])
+
+        current_node = best_neighbor
 
     return path
 
-# Usage
+
 if __name__ == "__main__":
     g = Graph()
 
@@ -48,6 +49,8 @@ if __name__ == "__main__":
 
     start_node = "S"
 
-    greedy_path = greedy_search(g.graph, start_node)
+    heuristic_values = {"S": 7, "A": 5, "B": 7, "C": 3, "D": 1, "G": 0}
+
+    greedy_path = greedy_search(g.graph, start_node, heuristic_values)
 
     print("Greedy Search path starting from", start_node, ":", " -> ".join(greedy_path))
