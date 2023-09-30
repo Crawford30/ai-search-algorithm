@@ -65,13 +65,13 @@ if __name__ == "__main__":
     start_node = "S"
     goal_node = "G"
     
-    #Node Heuristic 
+    # Node Heuristic 
     node_heuristics = {"S": 7, "A": 5, "B": 7, "C": 3, "D": 1, "G": 0}
      
-    ##A Star Path
+    # A Star Path
     astar_path = astar_search(g.graph, start_node, goal_node, node_heuristics)
 
     if astar_path:
-        print("A* path from", start_node, "to", goal_node, ":", " -> ".join(astar_path))
+        print("A* GRAPH SEARCH path from", start_node, "to", goal_node, ":", " -> ".join(astar_path))
     else:
         print("No path found from", start_node, "to", goal_node)
