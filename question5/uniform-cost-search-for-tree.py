@@ -41,7 +41,6 @@ def ucs(graph, start, goal):
 
     return None
 
-# Usage
 if __name__ == "__main__":
     g = Graph()
 
@@ -58,9 +57,14 @@ if __name__ == "__main__":
     start_node = "S"
     goal_node = "G"
     
+    visited_nodes = set()
     ucs_path = ucs(g.graph, start_node, goal_node)
+    expanded_states = visited_nodes
+    unexpanded_states = set(g.graph.keys()) - expanded_states
 
     if ucs_path:
         print("UCS path from", start_node, "to", goal_node, ":", " -> ".join(ucs_path))
+        print("Expanded states:", " -> ".join(expanded_states))
+        print("Unexpanded states:", " -> ".join(sorted(unexpanded_states)))
     else:
         print("No path found from", start_node, "to", goal_node)
