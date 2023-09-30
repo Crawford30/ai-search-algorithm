@@ -20,9 +20,9 @@ def dfs(graph, start):
     while stack:
         node = stack.pop()
         if node not in visited:
-             #Keep track expanded states
-            expanded_states.append(node) 
-            
+            # Keep track of expanded states
+            expanded_states.append(node)
+
             visited.add(node)
             path.append(node)
 
@@ -49,5 +49,4 @@ if __name__ == "__main__":
     print("DFS Graph traversal starting from", start_node)
     dfs_path, expanded_states = dfs(g.graph, start_node)
     print("Expanded states:", " -> ".join(expanded_states))
-    print("Path:", " -> ".join(dfs_path))
-dfs(g.graph, "S")
+    print("Path Returned:", " -> ".join(dfs_path))
