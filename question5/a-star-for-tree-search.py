@@ -20,7 +20,7 @@ def astar_search(graph, start, goal, node_heuristics):
     g_scores = {node: float('inf') for node in graph}
     g_scores[start] = 0
     
-    #Tpo keep the order in which the states are expanded
+    #To keep the order in which the states are expanded
     expanded_order = []  
 
     while priority_queue:
