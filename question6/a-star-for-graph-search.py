@@ -38,7 +38,9 @@ def astar_search(graph, start, goal, node_heuristics):
         visited.add(current_node)
 
         neighbors = graph.get(current_node, [])
-        neighbors.sort()  # Sort neighbors alphabetically
+        
+        #Sort neighbors alphabetically
+        neighbors.sort()  
         for neighbor, neighbor_cost in neighbors:
             if neighbor in visited:
                 continue
@@ -48,7 +50,9 @@ def astar_search(graph, start, goal, node_heuristics):
             if tentative_g_score < g_scores[neighbor]:
                 path[neighbor] = current_node
                 g_scores[neighbor] = tentative_g_score
-                f_score = tentative_g_score + node_heuristics.get(neighbor, 0)  # Use node-specific heuristic
+                
+                # Use node-specific heuristic
+                f_score = tentative_g_score + node_heuristics.get(neighbor, 0)  
                 heapq.heappush(priority_queue, (f_score, neighbor))
 
     return None
