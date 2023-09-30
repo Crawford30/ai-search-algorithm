@@ -3,10 +3,12 @@
 
 
 
-# Empty Dictionary to holds the states
+# Empty Dictionary to hold the states
 directed_graph_dictionary = {}
 
 # Add vertices (nodes) to the directed graph
+#Note: S is the start State and G is the Goal State
+
 directed_graph_dictionary['S'] = set(['A', 'B'])
 directed_graph_dictionary['A'] = set(['B', 'C'])
 directed_graph_dictionary['B'] = set(['C'])
