@@ -41,7 +41,6 @@ def ucs(graph, start, goal):
 
     return None
 
-# Usage
 if __name__ == "__main__":
     g = Graph()
 

@@ -16,7 +16,9 @@ class Graph:
 def dfs(graph, node, visited, path):
     visited.add(node)
     path.append(node)
-    if node == "G":  # Stop the traversal when you reach  "G", goal Node
+    
+    # Stop the traversal when you reach  "G", goal Node
+    if node == "G":  
         return
     for neighbor in graph.get(node, []):
         if neighbor not in visited:
@@ -35,27 +37,6 @@ if __name__ == "__main__":
     g.add_edge("C", "D")
     g.add_edge("C", "G")
     g.add_edge("D", "G")
-   
-    # g.add_edge("S", "A")
-    # g.add_edge("S", "B")
-    # g.add_edge("A", "B")
-    # g.add_edge("A", "G")
-    # g.add_edge("B", "A")
-    # g.add_edge("B", "G")
-    # g.add_edge("B", "A")
-    # g.add_edge("B", "G")
-    # g.add_edge("A", "B")
-    # g.add_edge("A", "G")
-    
-    
-    # g.add_edge("S", "A")
-    # g.add_edge("S", "B")
-    # g.add_edge("A", "B")
-    # g.add_edge("A", "C")
-    # g.add_edge("B", "C")
-    # g.add_edge("C", "D")
-    # g.add_edge("C", "G")
-    # g.add_edge("D", "G")
 
     print("DFS traversal starting from S:")
     visited_nodes = set()

@@ -1,8 +1,6 @@
 #QUESTION 2.
 # Using sets and dictionary libraries represent the graph in Figure 1 into a python graph structure.
 
-
-
 # Empty Dictionary to hold the states
 directed_graph_dictionary = {}
 
