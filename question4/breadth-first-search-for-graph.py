@@ -1,5 +1,5 @@
-#QUESTION 3. Using python implement the following search strategies using for graph search
-#b. DFS
+#QUESTION 4. Using python implement the following search strategies using for graph search
+#b. BFS
 
 from collections import deque
 

@@ -15,7 +15,7 @@ class Graph:
         else:
             self.graph[node] = [neighbor]
 
-def dfs_graph(graph, start):
+def dfs(graph, start):
     visited = set()
     stack = [start]
     while stack:
@@ -38,4 +38,4 @@ if __name__ == "__main__":
     g.add_edge("D", "G")
 
     print("DFS Graph traversal starting from S:")
-    dfs_graph(g.graph, "S")
+    dfs(g.graph, "S")
