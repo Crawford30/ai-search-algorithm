@@ -16,13 +16,13 @@ class Graph:
 def dfs(graph, node, visited, path):
     visited.add(node)
     path.append(node)
-    if node == "G":  # Stop the traversal when you reach  "G", goal Node
+    
+    # Stop the traversal when you reach "G", the goal Node
+    if node == "G":  
         return
     for neighbor in graph.get(node, []):
         if neighbor not in visited:
             dfs(graph, neighbor, visited, path)
-
-
 
 if __name__ == "__main__":
     g = Graph()
@@ -35,33 +35,19 @@ if __name__ == "__main__":
     g.add_edge("C", "D")
     g.add_edge("C", "G")
     g.add_edge("D", "G")
-   
-    # g.add_edge("S", "A")
-    # g.add_edge("S", "B")
-    # g.add_edge("A", "B")
-    # g.add_edge("A", "G")
-    # g.add_edge("B", "A")
-    # g.add_edge("B", "G")
-    # g.add_edge("B", "A")
-    # g.add_edge("B", "G")
-    # g.add_edge("A", "B")
-    # g.add_edge("A", "G")
-    
-    
-    # g.add_edge("S", "A")
-    # g.add_edge("S", "B")
-    # g.add_edge("A", "B")
-    # g.add_edge("A", "C")
-    # g.add_edge("B", "C")
-    # g.add_edge("C", "D")
-    # g.add_edge("C", "G")
-    # g.add_edge("D", "G")
 
-    print("DFS traversal starting from S:")
+    start_node = "S"
+
     visited_nodes = set()
     path = []
-    dfs(g.graph, "S", visited_nodes, path)
-    print(" -> ".join(path))
+    dfs(g.graph, start_node, visited_nodes, path)
+
+    expanded_states = visited_nodes
+    unexpanded_states = set(g.graph.keys()) - expanded_states
+
+    print("DFS path starting from", start_node, ":", " -> ".join(path))
+    print("Expanded states:", " -> ".join(expanded_states))
+    print("Unexpanded states:", " -> ".join(sorted(unexpanded_states)))
 
 
 
