@@ -60,7 +60,7 @@ if __name__ == "__main__":
     visited_nodes = set()
     ucs_path = ucs(g.graph, start_node, goal_node)
     expanded_states = visited_nodes
-    unexpanded_states = set(g.graph.keys()) - expanded_states
+    unexpanded_states = set(g.graph.keys()) - expanded_states #Remove expanded states from the graph
 
     if ucs_path:
         print("UCS path from", start_node, "to", goal_node, ":", " -> ".join(ucs_path))
