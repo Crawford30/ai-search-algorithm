@@ -13,7 +13,7 @@ class Graph:
         else:
             self.graph[node] = [(neighbor, cost)]
 
-def ucs(graph, start, goal):
+def uniform_cost_search(graph, start, goal):
     visited = set()
     priority_queue = [(0, start)]
     path = {}
@@ -57,7 +57,7 @@ if __name__ == "__main__":
     start_node = "S"
     goal_node = "G"
     
-    ucs_path = ucs(g.graph, start_node, goal_node)
+    ucs_path = uniform_cost_search(g.graph, start_node, goal_node)
 
     if ucs_path:
         print("UCS GRAPH SEARCH path from", start_node, "to", goal_node, ":", " -> ".join(ucs_path))
