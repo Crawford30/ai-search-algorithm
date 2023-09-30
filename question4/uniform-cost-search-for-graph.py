@@ -41,7 +41,6 @@ def ucs(graph, start, goal):
 
     return None
 
-# Usage
 if __name__ == "__main__":
     g = Graph()
 
@@ -61,6 +60,6 @@ if __name__ == "__main__":
     ucs_path = ucs(g.graph, start_node, goal_node)
 
     if ucs_path:
-        print("UCS path from", start_node, "to", goal_node, ":", " -> ".join(ucs_path))
+        print("UCS GRAPH SEARCH path from", start_node, "to", goal_node, ":", " -> ".join(ucs_path))
     else:
         print("No path found from", start_node, "to", goal_node)
