@@ -14,12 +14,23 @@ class Graph:
 def dfs(graph, start):
     visited = set()
     stack = [start]
+    path = []
+    expanded_states = []
+
     while stack:
         node = stack.pop()
         if node not in visited:
-            print(node, end=" -> ")
+             #Keep track expanded states
+            expanded_states.append(node) 
+            
             visited.add(node)
-            stack.extend(neighbor for neighbor in graph.get(node, []) if neighbor not in visited)
+            path.append(node)
+
+            # Sort neighbors alphabetically and add them to the stack
+            neighbors = sorted(graph.get(node, []))
+            stack.extend(neighbor for neighbor in neighbors if neighbor not in visited)
+
+    return path, expanded_states
 
 if __name__ == "__main__":
     g = Graph()
@@ -33,5 +44,10 @@ if __name__ == "__main__":
     g.add_edge("C", "G")
     g.add_edge("D", "G")
 
-    print("DFS Graph traversal starting from S:")
-    dfs(g.graph, "S")
+    start_node = "S"
+
+    print("DFS Graph traversal starting from", start_node)
+    dfs_path, expanded_states = dfs(g.graph, start_node)
+    print("Expanded states:", " -> ".join(expanded_states))
+    print("Path:", " -> ".join(dfs_path))
+dfs(g.graph, "S")
