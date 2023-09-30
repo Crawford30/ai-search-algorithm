@@ -2,7 +2,7 @@
 #a. Depth first search
 
 #Note:: 1. DFS for Graph can contain cycles
-#Note:: 2. It's possible to revisit nodes in the graph if the traversal encounters cycles
+#Note:: 2. A state can be visited more than once
 
 
 class Graph:
